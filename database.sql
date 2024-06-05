@@ -17,13 +17,17 @@ CREATE TABLE `invoice` (
     `total_amount` DECIMAL(10,2) NOT NULL,
     `bill_status` VARCHAR(255),
     `due_at` DATE NOT NULL,
+    `user_name` VARCHAR(255) NOT NULL,
+    `user_address` VARCHAR(255) NOT NULL,
+    `user_siret` CHAR(14) NOT NULL,
+    `user_bank_details` VARCHAR(255),
     `client_siret` CHAR(14),
     `client_name` VARCHAR(255),
     `client_address` VARCHAR(255),
     `created_at` DATE NOT NULL,
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
 );
 
 -- Création de la table Product
@@ -32,7 +36,8 @@ CREATE TABLE `product` (
     `name` VARCHAR(255) NOT NULL,
     `quantity` INT NOT NULL,
     `price` DECIMAL(10,2) NOT NULL,
+    `total` DECIMAL(10,2) NOT NULL,
     `invoice_id` INT NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`invoice_id`) REFERENCES `invoice`(`id`)
+    FOREIGN KEY (`invoice_id`) REFERENCES `invoice`(`id`) ON DELETE CASCADE
 );
