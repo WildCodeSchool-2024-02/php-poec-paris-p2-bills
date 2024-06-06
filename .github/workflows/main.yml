@@ -22,6 +22,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # Sets up PHP
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, curl
+          ini-values: post_max_size=256M, upload_max_filesize=256M
+          coverage: none
+
       # Runs a set of commands using the runners shell
       - name: checks_directory
         run: |
