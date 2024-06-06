@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/assets/images/favicon.png">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/assets/images/favicon.png">
 
-    <title>{% block title %}{% endblock %}</title>
+        {% block links %}{% endblock %}
 
-    <link rel="stylesheet" href="/assets/css/style.css">
-    {% block stylesheet %}{% endblock %}
-</head>
+        <script src="https://kit.fontawesome.com/f61418b52c.js" crossorigin="anonymous"></script>
 
-<body>
-    {% block content %}{% endblock %}
-    {% block javascript %}{% endblock %}
-</body>
+        {% block scripts %}{% endblock %}
+
+        <title> Site facturation - {% block subtitle %}{% endblock %}</title>
+    </head>
+
+    <body>
+        {% block content %}{% endblock %}
+        {% block javascript %}{% endblock %}
+    </body>
 </html>
-
-
