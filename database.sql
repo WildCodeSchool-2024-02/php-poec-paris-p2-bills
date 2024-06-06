@@ -36,7 +36,6 @@ CREATE TABLE `product` (
     `name` VARCHAR(255) NOT NULL,
     `quantity` INT NOT NULL,
     `price` DECIMAL(10,2) NOT NULL,
-    `total` DECIMAL(10,2) NOT NULL,
     `invoice_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`invoice_id`) REFERENCES `invoice`(`id`) ON DELETE CASCADE
