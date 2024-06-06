@@ -24,13 +24,14 @@ class InvoiceController extends AbstractController
 
             $errors = [];
 
-            if (empty($invoice['created_at']) ||
+            if (
+                empty($invoice['created_at']) ||
                 empty($invoice['due_at']) ||
                 empty($invoice['user_siret']) ||
                 empty($invoice['user_name']) ||
                 empty($invoice['user_address']) ||
-                empty($invoice['total_amount']))
-            {
+                empty($invoice['total_amount'])
+            ) {
                 $errors[] = 'Les champs marqués d\'un * sont obligatoires.';
             }
 

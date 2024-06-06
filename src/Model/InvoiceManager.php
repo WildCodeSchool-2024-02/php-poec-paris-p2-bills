@@ -44,17 +44,16 @@ class InvoiceManager extends AbstractManager
         $products = [];
 
         // On boucle sur le tableau invoice
-        foreach($invoice as $key => $value) {
+        foreach ($invoice as $key => $value) {
             // On verifie les clés commencant par "product_name_"
-            if (strpos($key, 'product_name_') === 0){
-
+            if (strpos($key, 'product_name_') === 0) {
                 // Extraire le numéro du produit
-                $product_number = substr($key, strlen('product_name_'));
+                $productNumber = substr($key, strlen('product_name_'));
 
                 // Récupérer les valeurs des autres attributs du produit
-                $name = $invoice['product_name_' . $product_number];
-                $price = $invoice['product_price_' . $product_number];
-                $quantity = $invoice['product_quantity_' . $product_number];
+                $name = $value;
+                $price = $invoice['product_price_' . $productNumber];
+                $quantity = $invoice['product_quantity_' . $productNumber];
 
                 // Ajouter les données du produit au tableau
                 $products[] = array(
@@ -66,13 +65,13 @@ class InvoiceManager extends AbstractManager
         }
 
         // Préparer la requête d'insertion
-        $productQuery = "INSERT INTO " . self::TABLE3 . " (name, quantity, price, invoice_id) VALUES (:name, :quantity, :price, :invoice_id)";
+        $productQuery = "INSERT INTO " . self::TABLE3 . " (name, quantity, price, invoice_id)
+        VALUES (:name, :quantity, :price, :invoice_id)";
 
         $productStatement = $this->pdo->prepare($productQuery);
 
         // Insérer les données des produits dans la base de données
-        foreach ($products as $product)
-        {
+        foreach ($products as $product) {
             $productStatement->bindParam(':name', $product['name']);
             $productStatement->bindParam(':quantity', $product['quantity']);
             $productStatement->bindParam(':price', $product['price']);
