@@ -1,4 +1,19 @@
-// Fonction pour calculer le montant total d'un produit en fonction du prix unitaire et de la quantité
+document.getElementById('product-container').addEventListener('input', function(event) {
+    if (event.target.matches('input[name^="product_price_"]') || event.target.matches('input[name^="product_quantity_"]')) {
+        recalculateProductTotals();
+    }
+});
+
+function recalculateProductTotals() {
+    const productLines = document.getElementsByClassName('product-line');
+
+    for (let i = 0; i < productLines.length; i++) {
+        calculateProductTotal(i + 1);
+    }
+
+    calculateTotalAmount();
+}
+
 function calculateProductTotal(itemCount) {
     const priceInput = document.querySelector(`input[name="product_price_${itemCount}"]`);
     const quantityInput = document.querySelector(`input[name="product_quantity_${itemCount}"]`);
@@ -12,18 +27,6 @@ function calculateProductTotal(itemCount) {
     totalInput.value = total.toFixed(2);
 }
 
-// Fonction pour recalculer les montants totaux des produits
-function recalculateProductTotals() {
-    const productLines = document.getElementsByClassName('product-line');
-
-    for (let i = 0; i < productLines.length; i++) {
-        calculateProductTotal(i + 1);
-    }
-
-    calculateTotalAmount(); // Appel de la fonction de calcul du montant total global à chaque fois qu'un champ est modifié
-}
-
-// Fonction pour calculer le montant total global
 function calculateTotalAmount() {
     let totalAmount = 0;
     const productTotalInputs = document.querySelectorAll('input[name^="product_total_"]');
@@ -36,16 +39,7 @@ function calculateTotalAmount() {
     totalAmountInput.value = totalAmount.toFixed(2);
 }
 
-// Ajout des écouteurs d'événements pour recalculer les montants lors de la modification des champs
-document.getElementById('product-container').addEventListener('input', function(event) {
-    if (event.target.matches('input[name^="product_price_"]') || event.target.matches('input[name^="product_quantity_"]')) {
-        recalculateProductTotals();
-    }
-});
-
-
 // Fonction pour ajouter une nouvelle ligne de produit
-
 document.getElementById('add-item').addEventListener('click', function() {
     const container = document.getElementById('product-container');
     const itemCount = container.getElementsByClassName('product-line').length + 1;
@@ -62,10 +56,9 @@ document.getElementById('add-item').addEventListener('click', function() {
 });
 
 // Fonction pour supprimer une ligne de produit
-
 document.getElementById('product-container').addEventListener('click', function(event) {
     if (event.target.classList.contains('remove-item')) {
         event.target.parentElement.remove();
-        calculateTotalAmount(); // Recalcul du montant total après la suppression d'une ligne de produit
+        calculateTotalAmount();
     }
 });
