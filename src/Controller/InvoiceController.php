@@ -28,6 +28,16 @@ class InvoiceController extends AbstractController
             $invoice = array_map('htmlentities', array_map('trim', $_POST));
 
             if (
+                empty($invoice['created_at'])
+            ) {
+                $errors[] = 'La date de création doit être renseignée.';
+            }
+            if (
+                empty($invoice['due_at'])
+            ) {
+                $errors[] = 'La date d\'échéance doit être renseignée.';
+            }
+            if (
                 empty($invoice['user_siret']) || !preg_match(
                     '/^[0-9]{14}$/',
                     $invoice['user_siret']
@@ -66,6 +76,33 @@ class InvoiceController extends AbstractController
                 )
             ) {
                 $errors[] = 'Veuillez entrer un montant valide';
+            }
+
+            // Vérification des produits
+            foreach ($invoice as $key => $value) {
+                // On vérifie les clés commençant par "product_name_"
+                if (strpos($key, 'product_name_') === 0) {
+                    // Extraire le numéro du produit
+                    $productNumber = substr($key, strlen('product_name_'));
+
+                    // Récupérer les valeurs des autres attributs du produit
+                    $productName = $value;
+                    $productPrice = $invoice['product_price_' . $productNumber];
+                    $productQuantity = $invoice['product_quantity_' . $productNumber];
+
+                    // Vérification du nom du produit
+                    if (empty($productName)) {
+                        $errors[] = 'Le nom du produit ' . $productNumber . ' est requis.';
+                    }
+                    // Vérification du prix du produit
+                    if (!is_numeric($productPrice) || $productPrice <= 0) {
+                        $errors[] = 'Le prix du produit ' . $productNumber . ' doit être un nombre positif.';
+                    }
+                    // Vérification de la quantité du produit
+                    if (!is_numeric($productQuantity) || $productQuantity <= 0) {
+                        $errors[] = 'La quantité du produit ' . $productNumber . ' doit être un nombre positif.';
+                    }
+                }
             }
 
             // Si pas d'erreurs, insérer la facture puis redirection vers le dashboard

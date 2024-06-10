@@ -13,7 +13,6 @@ class InvoiceManager extends AbstractManager
      */
     public function insert(array $invoice): string
     {
-        // Insérer les données dans la table 'invoice'
         $invoiceQuery = "INSERT INTO " . self::TABLE . "
                  (total_amount, created_at, due_at, user_siret, user_name, user_address, user_bank_details,
                  client_siret, client_name, client_address, user_id)
@@ -37,7 +36,6 @@ class InvoiceManager extends AbstractManager
 
         $invoiceStatement->execute();
 
-        // Récupérer et retourne l'ID de la facture nouvellement insérée
         return $this->pdo->lastInsertId();
     }
 }
