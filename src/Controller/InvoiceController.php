@@ -123,4 +123,84 @@ class InvoiceController extends AbstractController
             'errors' => $errors,
         ]);
     }
+
+    /**
+     * Display edit invoice page
+     */
+    public function edit($id): string
+    {
+        $errors = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $invoice = array_map('htmlentities', array_map('trim', $_POST));
+
+            if (
+                empty($invoice['created_at'])
+            ) {
+                $errors[] = 'Le date de création doit être renseigné.';
+            }
+            if (
+                empty($invoice['due_at'])
+            ) {
+                $errors[] = 'Le date d\'échéance doit être renseigné.';
+            }
+            if (
+                empty($invoice['user_siret']) || !preg_match(
+                    '/^[0-9]{14}$/',
+                    $invoice['user_siret']
+                )
+            ) {
+                $errors[] = 'Le numéro de Siret doit être renseigné et comporter 14 chiffres.';
+            }
+            if (
+                empty($invoice['user_name']) || !preg_match(
+                    '/^[A-Za-zÀ-ÿ \'-]+$/',
+                    $invoice['user_name']
+                )
+            ) {
+                $errors[] = 'Le nom doit être renseigné et ne contenir que des lettres, des espaces et des tirets.';
+            }
+            if (
+                empty($invoice['user_address']) || !preg_match(
+                    '/^[A-Za-zÀ-ÿ0-9 \'.,-]+$/',
+                    $invoice['user_address']
+                )
+            ) {
+                $errors[] = 'L\'adresse postale doit être renseignée et contenir des caractères valides.';
+            }
+            if (
+                !empty($invoice['user_bank_details']) && !preg_match(
+                    '/^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$/',
+                    $invoice['user_bank_details']
+                )
+            ) {
+                $errors[] = 'Veuillez entrer un IBAN valide.';
+            }
+            if (
+                empty($invoice['total_amount']) || !preg_match(
+                    '/^[0-9]+([.,][0-9]{1,2})?$/',
+                    $invoice['total_amount']
+                )
+            ) {
+                $errors[] = 'Veuillez entrer un montant valide';
+            }
+
+            if (empty($errors)) {
+                $this->invoiceManager->update($invoice, $id);
+
+                $this->productManager->delete($id);
+
+                $this->productManager->insert($invoice, $id);
+
+                header('Location: /invoices');
+                exit;
+            }
+        }
+
+        $invoice = $this->invoiceManager->getInvoiceById($id);
+        return $this->twig->render('Invoice/edit_invoice.html.twig', [
+            'invoice' => $invoice,
+            'errors' => $errors,
+        ]);
+    }
 }
