@@ -74,15 +74,15 @@ class InvoiceManager extends AbstractManager
         $invoiceStatement->execute();
     }
 
-    public function getInvoiceById($id): array
+    public function selectOneById($id): array
     {
-        $query1 = "SELECT * FROM " . self::TABLE . " WHERE id = $id";
-        $statement1 = $this->pdo->query($query1);
-        $invoice['infos'] = $statement1->fetchAll(PDO::FETCH_ASSOC);
+        $querySelectInvoiceData = "SELECT * FROM " . self::TABLE . " WHERE id = $id";
+        $statementSelectInvoiceData = $this->pdo->query($querySelectInvoiceData);
+        $invoice['infos'] = $statementSelectInvoiceData->fetchAll(PDO::FETCH_ASSOC);
 
-        $query2 = "SELECT * FROM product WHERE invoice_id = $id";
-        $statement2 = $this->pdo->query($query2);
-        $invoice['products'] = $statement2->fetchAll(PDO::FETCH_ASSOC);
+        $querySelectProductData = "SELECT * FROM product WHERE invoice_id = $id";
+        $statementSelectProductData = $this->pdo->query($querySelectProductData);
+        $invoice['products'] = $statementSelectProductData->fetchAll(PDO::FETCH_ASSOC);
 
         return $invoice;
     }

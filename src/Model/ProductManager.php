@@ -53,7 +53,7 @@ class ProductManager extends AbstractManager
     /**
      * Delete product in database
      */
-    public function delete(int $id): void
+    public function deleteAllProducts(int $id): void
     {
         $productQuery = "DELETE FROM product WHERE invoice_id = $id";
         $productStatement = $this->pdo->query($productQuery);
