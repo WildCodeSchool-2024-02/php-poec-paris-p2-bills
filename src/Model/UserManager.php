@@ -35,7 +35,7 @@ class UserManager extends AbstractManager
     /**
      * Delete user in database
      */
-    public function delete(int $id) : void
+    public function delete(int $id): void
     {
         $userQuery = "DELETE FROM user WHERE id = $id";
         $userStatement = $this->pdo->query($userQuery);
