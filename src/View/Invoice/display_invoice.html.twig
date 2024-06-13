@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% block links %}
+    <link href="/assets/css/display-invoice.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+    <script rel="script" src="/assets/script/functionLibrary.js" defer></script>
+{% endblock %}
+
+{% block subtitle %}
+    Facture n°{{ invoice.infos.id }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="invoice-content">
+            <div class="invoice-number-date">
+                <span>{{ invoice.infos.created_at }}</span></br>
+                <span>Facture n°{{ invoice.infos.id }}</span>
+            </div>
+            <div class="user-client-infos">
+                <div>
+                    <span>{{ invoice.infos.user_siret }}</span>
+                    <span>{{ invoice.infos.user_name | raw }}</span>
+                    <span>{{ invoice.infos.user_address |raw }}</span>
+                </div>
+                <div>
+                    <span>{{ invoice.infos.client_siret }}</span>
+                    <span>{{ invoice.infos.client_name | raw}}</span>
+                    <span>{{ invoice.infos.client_address | raw }}</span>
+                </div>
+            </div>
+            <table class="product">
+                <tr class="td-titles">
+                    <td>Description</td>
+                    <td>Prix unitaire</td>
+                    <td>Quantité</td>
+                    <td>Sous-total</td>
+                </tr>
+                {% for product in invoice.products %}
+                    <tr class="td-content">
+                        <td class="product-name">{{ product.name | raw }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price * product.quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            
+            <span>Montat total TTC : <b>{{ invoice.infos.total_amount }} euros</b></span>
+            <p><em>TVA non applicable, article 293B du Code Général des Impôts</em></p>
+            <div class="bank-details"><span>IBAN : {{ invoice.infos.user_bank_details }}</span></div>
+        </section>
+        <section class="cta-invoice">
+            <a onclick="window.print();" class="noPrint"><span>Télécharger</span></a>
+            <a href="/invoices/edit/?id={{invoice.infos.id}}" class="noPrint"><span>Modifier</span></a>
+            <a href="#" onclick="confirmDelete('/invoices/delete/?id={{invoice.infos.id}}')" class="noPrint"><span>Supprimer</span></a>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,92 @@
+@import url('style.css');
+
+section.invoice-content {
+    background-color: white;
+    font-size: 1.3em;
+    min-height: 75vh;
+    min-width: 80vw;
+    box-shadow: var(--shadow-large-element);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 1rem;
+}
+
+section.invoice-content>div,
+section.invoice-content>table {
+    width: 80%;
+    margin-bottom: 4rem;
+}
+
+section.invoice-content>table {
+    margin-top: 3rem;
+    border-collapse: collapse;
+}
+
+section.invoice-content>table td {
+    border: 0.8px solid black;
+}
+
+table .td-titles {
+    font-weight: bold;
+    text-align: center;
+}
+
+table .td-content {
+    height: 4rem;
+    text-align: center;
+}
+
+table .product-name {
+    width: 50%;
+    text-align: start;
+}
+
+.user-client-infos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-client-infos>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-client-infos>div:nth-last-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+}
+
+.cta-invoice span {
+    color: var(--light);
+    background-color: var(--secondary-color);
+    box-shadow: var(--shadow-small-element);
+    border-radius: var(--border-radius-small-element);
+    padding: var(--padding-small-element);
+}
+
+.cta-invoice a:nth-of-type(2) span {
+    color: var(--secondary-color);
+    border: 1.5px solid var(--secondary-color);
+    background-color: var(--primary-color);
+}
+
+@media print {
+
+    .noPrint {
+        display: none;
+    }
+
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+
+    section.invoice-content {
+        box-shadow: none;
+        font-size: 1em;
+    }
+
+}

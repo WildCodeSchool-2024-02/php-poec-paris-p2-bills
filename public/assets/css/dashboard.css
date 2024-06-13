@@ -1,0 +1,92 @@
+@import url('style.css');
+
+.logout-button {
+    color: var(--light);
+    background-color: var(--log-color);
+    border-radius: var(--border-radius-small-element);
+    padding: var(--padding-small-element);
+    margin-left: 1rem;
+}
+
+.main-section {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.main-part {
+    display: flex;
+    min-height: 40vh;
+    border-radius: var(--border-radius-large-element);
+    box-shadow: var(--shadow-small-element);
+    overflow: hidden;
+    background-color: var(--secondary-color);
+}
+
+.main-part .menu {
+    background-color: var(--secondary-color);
+    min-width: 9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.main-part .menu a {
+    color: var(--light);
+    text-align: center;
+}
+
+.main-part .last-invoices {
+    background-color: #FEFDFF;
+    border-radius: var(--border-radius-large-element);
+    padding: 1.3rem 3rem;
+    min-height: 30vh;
+    max-width: 60vw;
+}
+
+.main-part .last-invoices p {
+    font-weight: 200;
+}
+
+.main-part .single-invoice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--border-radius-small-element);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: var(--primary-color);
+    padding: 1rem 1.7rem;
+    gap: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.reminders-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem
+}
+
+.reminders-part>div {
+    border-radius: var(--border-radius-large-element);
+    padding: var(--padding-small-element);
+    box-shadow: var(--shadow-large-element);
+    width: 10rem;
+    height: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.8rem;
+}
+
+.reminders-part>div:nth-child(1) {
+    background-color: #9ED4DB;
+}
+
+.reminders-part>div:nth-child(2) {
+    background-color: #F3BD9F;
+}

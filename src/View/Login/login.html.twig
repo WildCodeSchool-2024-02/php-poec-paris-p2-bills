@@ -1,0 +1,40 @@
+{% extends 'layout.html.twig' %}
+
+{% block links %}
+    <link href="/assets/css/identification-forms.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block subtitle %}
+    Connexion
+{% endblock %}
+
+{% block content %}
+    {% if errors is not empty %}
+        {% for error in errors %}
+            {{ error }}
+        {% endfor %}
+    {% endif %}
+    <span class="ornament one"></span>
+    <span class="ornament two"></span>
+    <span class="ornament three"></span>
+    <span class="ornament four"></span>
+
+    <form action="" method="post">
+        <h2>Connectez-vous</h2>
+        <fieldset class="user-infos-field">
+            <input type="email" name="user_email" id="user_email" placeholder="Email" maxlength="255" title="Veuillez renseigner un email valide" required>
+            <input type="password" name="user_password" id="user_password" placeholder="Mot de passe" title="Veuillez renseigner un mot de passe valide" maxlength="24" pattern="/^[A-Za-zÀ-ÿ0-9 \'.,!@#$%^&*()_-]+$/" required>
+        </fieldset>
+
+        <div class="form-cta">
+            <button type="submit">Valider</button>
+        </div>
+
+        <p>Pas encore membre ? <a href="/subscribe">Inscrivez-vous</a></p>
+        <p>Mot de passe oublié ?</p>
+    </form>
+
+{% endblock %}

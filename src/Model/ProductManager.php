@@ -11,7 +11,7 @@ class ProductManager extends AbstractManager
     /**
      * Insert product in database
      */
-    public function insert(array $invoice, string $invoiceId): void
+    public function insert(array $invoice, int $invoiceId): void
     {
         $products = [];
 
@@ -53,7 +53,7 @@ class ProductManager extends AbstractManager
     /**
      * Delete product in database
      */
-    public function deleteAllProducts(int $id): void
+    public function deleteAllProducts(int $id) : void
     {
         $productQuery = "DELETE FROM product WHERE invoice_id = $id";
         $productStatement = $this->pdo->query($productQuery);

@@ -1,6 +1,60 @@
 {% extends 'layout.html.twig' %}
 
+{% block links %}
+    <link href="/assets/css/index.css" rel="stylesheet" />
+{% endblock %}
+
+{% block subtitle %}
+    Bienvenue
+{% endblock %}
+
 {% block content %}
-    <h1>Hello Wilder !</h1>
-    <p>Find a complete CRUD example on <a href="/items">/items</a> page.</p>
+    <header>
+        <img src="" alt="" class="logo">
+        <div>
+            <a href="/login"><span class="login-button">Connexion</span></a>
+            <a href="/subscribe"><span class="signup-button">Inscription</span></a>
+        </div>
+    </header>
+    <main>
+        <section class="presentation-section">
+            <div class="presentation-spitch">
+                <h1>Simplifiez-vous la vie, <br>
+                    simplifiez votre <b>facturation</b></h1>
+                <p>Bienvenue sur Facture Easy, la solution de facturation en ligne simple, rapide et efficace conçue pour répondre aux besoins des entrepreneurs. <br>
+                Notre plateforme vous permet de créer, d'envoyer et de suivre vos factures gratuitement et quelques clics et, pour que vous puissiez vous concentrer sur ce qui compte vraiment : faire croître votre entreprise.</p>
+                <a href="/login"><span>C'est parti</span></a>
+            </div>
+            <div class="presentation-screenshots">
+                <span></span>
+                <span></span>
+                <img src="/assets/images/image1.png" alt="">
+                <img src="/assets/images/image2.png" alt="">
+            </div>
+        </section>
+        <section class="avantages-section">
+            <div class="avantage-container">
+                <i class="fa-solid fa-clock"></i>
+                <h4>Gain de temps</h4>
+                <p>Les calculs automatisés et les modèles standardisés réduisent le temps passé sur la facturation et minimisent les erreurs humaines.</p>
+            </div>
+            <div class="avantage-container">
+                <i class="fa-solid fa-file-circle-check"></i>
+                <h4>Suivi et gestion simplifiés</h4>
+                <p>Notre interface intuitive vous permet de générer des factures professionnelles en quelques minutes. Notre système de classement automatisé vous alerte en temps réel des paiements en ettente.</p>
+            </div>
+            <div class="avantage-container">
+                <i class="fa-solid fa-lock"></i>
+                <h4>Accessibilité et sécurité</h4>
+                <p>Vous pouvez créer et consulter vos factures n'importe quand, après authentification. Les données stockées sont protégées des pannes matérielles ou des catastrophes.
+                </p>
+            </div>
+        </section>
+        <section class="invitation-section">
+            <h3> Convaincu ? <a href="/login">Lancez-vous !</a></h3>
+            <span></span>
+            <span></span>
+        </section>
+    </main>
+    <footer></footer>
 {% endblock %}

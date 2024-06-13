@@ -1,0 +1,71 @@
+:root {
+    --gradient-color: linear-gradient(90deg, #F8F4FF 0%, #E9DFFF 100%);
+    --primary-color: #fbfafa;
+    --secondary-color: #351A6D;
+    --log-color: #643DB6;
+    --ornament-color: #dbd6f9;
+    --invoice-background: ;
+    --font: 'Verdana';
+    --title-font: ;
+    --light: #fbfafa;
+    --medium: #767474;
+    --dark: black;
+    --shadow-small-element: 8px 9px 4px rgba(0, 0, 0, 0.15);
+    --shadow-large-element: 8px 12px 19px 12px rgba(0, 0, 0, 0.1);
+    --border-radius-small-element: 8px;
+    --border-radius-large-element: 30px;
+    --padding-small-element: 0.5rem 2rem;
+    --small-spacing: 1.5rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--gradient-color);
+    font-family: var(--font);
+    margin: 0;
+    min-height: 100vh;
+}
+
+main {
+    padding: 3rem 0rem;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    margin-bottom: calc(var(--small-spacing) * 2);
+}
+
+h1 {
+    font-weight: 300;
+}
+
+b {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p {
+    margin-bottom: var(--small-spacing);
+}
+
+button {
+    cursor: pointer;
+    border-style: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--small-spacing);
+    margin-bottom: calc(var(--small-spacing) * 2);
+}
