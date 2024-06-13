@@ -126,3 +126,22 @@ form input:focus {
     border: 1.5px solid var(--log-color);
     background-color: var(--primary-color);
 }
+
+/******** Create / Modify Invoice *********/
+.error {
+    border: 2px solid red;
+  }
+  .error:focus {
+    border: 2px solid red;
+    outline: none;
+    box-shadow: 0 0 5px red;
+  }
+  
+  .success {
+    border: 2px solid green;
+  }
+  .success:focus {
+    border: 2px solid green;
+    outline: none;
+    box-shadow: 0 0 5px green;
+  }
