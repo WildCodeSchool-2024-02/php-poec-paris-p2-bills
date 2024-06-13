@@ -1,17 +1,25 @@
 -- Création de la table USER
 CREATE TABLE `user` (
     `id` INT NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Création de la table INFO
+CREATE TABLE `info` (
+    `id` INT NOT NULL AUTO_INCREMENT,
     `firstname` VARCHAR(255) NOT NULL,
     `lastname` VARCHAR(255) NOT NULL,
     `siret` CHAR(14) NOT NULL,
     `address` VARCHAR(255) NOT NULL,
-    `email` VARCHAR(255) NOT NULL,
-    `password` VARCHAR(255) NOT NULL,
     `bank_details` VARCHAR(255),
-    PRIMARY KEY (`id`)
-);
+    `user_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Création de la table Invoices
+-- Création de la table INVOICE
 CREATE TABLE `invoice` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `total_amount` DECIMAL(10,2) NOT NULL,
@@ -28,9 +36,9 @@ CREATE TABLE `invoice` (
     `user_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Création de la table Product
+-- Création de la table PRODUCT
 CREATE TABLE `product` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
@@ -39,4 +47,4 @@ CREATE TABLE `product` (
     `invoice_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`invoice_id`) REFERENCES `invoice`(`id`) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

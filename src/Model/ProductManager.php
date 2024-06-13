@@ -11,7 +11,7 @@ class ProductManager extends AbstractManager
     /**
      * Insert product in database
      */
-    public function insert(array $invoice, string $invoiceId): void
+    public function insert(array $invoice, int $invoiceId): void
     {
         $products = [];
 

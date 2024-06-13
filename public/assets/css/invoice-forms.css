@@ -1,0 +1,147 @@
+@import url('style.css');
+
+form {
+    padding: 4rem 14rem;
+}
+
+form fieldset {
+    border: none;
+    margin-top: 1.5rem;
+}
+
+form legend {
+    margin-left: 0.6rem;
+}
+
+form input {
+    height: 2.7rem;
+    border-radius: 6px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    text-align: center;
+    font-size: 1em;
+}
+
+form input:focus {
+    outline: 1.5px solid var(--secondary-color);
+}
+
+#user_address,
+#client_address {
+    height: 5.2rem;
+}
+
+.dates-field {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#created_at,
+#due_at {
+    cursor: pointer;
+}
+
+.infos-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.products-field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+#product-container {
+    width: 100%;
+}
+
+.product-line {
+    display: flex;
+    margin-bottom: 0.2rem;
+}
+
+.product-line input {
+    flex-grow: 1;
+    margin: 0 0.3rem;
+}
+
+.product-line input:nth-of-type(1) {
+    width: 58%;
+}
+
+.products-field button {
+    background-color: white;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.products-field button:nth-of-type(1) {
+    font-size: 1.5em;
+    padding: 0 0.8rem;
+    margin: 0.3rem;
+    border-radius: var(--border-radius-large-element);
+}
+
+#add-item {
+    border-radius: var(--border-radius-large-element);
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+}
+
+#total_amount {
+    padding: 0 10rem;
+}
+
+.bank-details-field {
+    display: flex;
+}
+
+.bank-details-field input {
+    flex-grow: 1;
+}
+
+.form-cta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 1.8rem;
+}
+
+.form-cta button {
+    box-shadow: var(--shadow-small-element);
+    border-radius: var(--border-radius-small-element);
+    padding: 0.7rem 3.2rem;
+    text-transform: uppercase;
+}
+
+.form-cta button:nth-of-type(1) {
+    color: var(--light);
+    background-color: var(--secondary-color);
+}
+
+.form-cta button:nth-of-type(2) {
+    color: var(--log-color);
+    border: 1.5px solid var(--log-color);
+    background-color: var(--primary-color);
+}
+
+/******** Create / Modify Invoice *********/
+.error {
+    border: 2px solid red;
+  }
+  .error:focus {
+    border: 2px solid red;
+    outline: none;
+    box-shadow: 0 0 5px red;
+  }
+  
+  .success {
+    border: 2px solid green;
+  }
+  .success:focus {
+    border: 2px solid green;
+    outline: none;
+    box-shadow: 0 0 5px green;
+  }

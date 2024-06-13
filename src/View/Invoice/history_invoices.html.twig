@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block links %}
+    <link href="/assets/css/history-invoices.css" rel="stylesheet" />
+{% endblock %}
+
+{% block scripts %}
+    <script rel="script" src="/assets/script/functionLibrary.js" defer></script>
+{% endblock %}
+
+{% block subtitle %}
+    Mes factures
+{% endblock %}
+
+{% block content %}
+    <header>
+        <img src="" alt="" class="logo">
+        <div>
+            <a href="/logout"><span class="logout-button">Déconnexion</span></a>
+        </div>
+    </header>
+    <main>
+        <h1>Historique de mes <b>factures</b></h1>
+        <span class="ornament one"></span>
+        <span class="ornament two"></span>
+        <span class="ornament three"></span>
+
+        <div class="wrap">
+            <form class="search" action="" method="post">
+                <input type="text" name="search-request" class="search-term" placeholder="Rechercher par montant, client...">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+
+        <div class="last-invoices">
+            {% for invoice in invoices %}
+            <div class="single-invoice">
+                <span><b>{{invoice.created_at }}</b></span>
+                <span>{{invoice.due_at }}</span>
+                <span>{{invoice.client_name | raw }}</span>
+                <span><b>{{invoice.total_amount }} euros</b></span>
+                <div>
+                    <a href="/invoices/show/?id={{invoice.id}}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="/invoices/edit/?id={{invoice.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="#" onclick="confirmDelete('/invoices/delete/?id={{invoice.id}}')"><i class="fa-solid fa-trash-can"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="/dashboard" class="back-btn"><span>Retour</span></a>
+    </main>
+    <footer>Mentions légales</footer>
+{% endblock %}

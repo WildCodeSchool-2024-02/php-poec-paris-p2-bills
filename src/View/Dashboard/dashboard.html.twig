@@ -1,0 +1,74 @@
+{% extends 'layout.html.twig' %}
+
+{% block links %}
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+{% endblock %}
+
+{% block scripts %}
+    <script rel="script" src="/assets/script/functionLibrary.js" defer></script>
+{% endblock %}
+
+{% block subtitle %}
+    Dashboard
+{% endblock %}
+
+{% block content %}
+    <header>
+        <img src="" alt="" class="logo">
+        <div>
+            <a href="/logout"><span class="logout-button">Déconnexion</span></a>
+        </div>
+    </header>
+    <main>
+        <h1>Mon <b>dashboard</b></h1>
+        <span></span>
+        <span></span>
+        <span></span>
+        <section class="main-section">
+            <div class="main-part">
+                <div class="menu">
+                    <a href="/invoices/create">
+                        <p>Créer une <br>facture</p>
+                    </a>
+                    <a href="/invoices">
+                        <p>Mes factures</p>
+                    </a>
+                    <a href="/infos">
+                        <p>Mes informations</p>
+                    </a>
+                </div>
+                <div class="last-invoices">
+                {% if invoices is not empty %}
+                    {% for invoice in invoices %}
+                    <div class="single-invoice">
+                        <span><b>{{ invoice.created_at }}</b></span>
+                        <span>{{ invoice.due_at }}</span>
+                        <span>{{ invoice.client_name | raw }}</span>
+                        <span><b>{{ invoice.total_amount }} euros</b></span>
+                        <div>
+                            <a href="/invoices/show/?id={{invoice.id}}"><i class="fa-solid fa-eye"></i></a>
+                            <a href="/invoices/edit/?id={{invoice.id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="#" onclick="confirmDelete('/invoices/delete/?id={{invoice.id}}')"><i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>Bienvenue dans votre espace personnel<h3>
+                        <p>Vous pouvez dès à présent commencer à créer vos factures en cliquant sur le lien "créer facture" dans le menu à gauche. Pour gagner encore plus de temps, nous vous invitons à renseigner vos informations personnelles dans la rubrique "mes informations" ; celles-ci seront alors chargées automatiquement lors de la création de facture pour vous simplifier la vie. </br>
+                        Une fois vos factures créées, vous pourrez les retrouver toutes dans la rubrique "mes factures".</p>
+                {% endif %}
+                </div>
+            </div>
+            <div class="reminders-part">
+                <div>
+                    <span>Total du mois</span>
+                    <span><b>{{ totalMonth }} €</b></span>
+                </div>
+                <div>
+                    <span>Total année fiscale</span>
+                    <span><b>{{ totalYear }} €</b></span>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
